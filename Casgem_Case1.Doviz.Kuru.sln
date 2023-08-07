@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casgem_Case1.Doviz.Kuru", "Casgem_Case1.Doviz.Kuru\Casgem_Case1.Doviz.Kuru.csproj", "{72FD6226-F176-4FFC-92F9-88C9FCAA719C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casgem_Case1.Doviz.Kuru.Consume", "Casgem_Case1.Doviz.Kuru.Consume\Casgem_Case1.Doviz.Kuru.Consume.csproj", "{6C93C122-E389-4F14-8A0E-CC44DEACC474}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72FD6226-F176-4FFC-92F9-88C9FCAA719C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72FD6226-F176-4FFC-92F9-88C9FCAA719C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72FD6226-F176-4FFC-92F9-88C9FCAA719C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72FD6226-F176-4FFC-92F9-88C9FCAA719C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E01AF880-76F2-4438-A29C-C74A6B50104C}
+	EndGlobalSection
+EndGlobal
