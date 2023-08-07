@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casgem_Case1.Doviz.Kuru", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casgem_Case1.Doviz.Kuru.Consume", "Casgem_Case1.Doviz.Kuru.Consume\Casgem_Case1.Doviz.Kuru.Consume.csproj", "{6C93C122-E389-4F14-8A0E-CC44DEACC474}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Casgem_Case1.Doviz.Kuru.Core", "Casgem_Case1.Doviz.Kuru.Core\Casgem_Case1.Doviz.Kuru.Core.csproj", "{F3BF1D1C-3958-4B99-926D-CAF261F301ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C93C122-E389-4F14-8A0E-CC44DEACC474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BF1D1C-3958-4B99-926D-CAF261F301ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BF1D1C-3958-4B99-926D-CAF261F301ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BF1D1C-3958-4B99-926D-CAF261F301ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BF1D1C-3958-4B99-926D-CAF261F301ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
