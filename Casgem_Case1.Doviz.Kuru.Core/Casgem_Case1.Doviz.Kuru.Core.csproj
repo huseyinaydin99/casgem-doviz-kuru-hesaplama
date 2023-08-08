@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Casgem_Case1.Doviz.Kuru.Consume\Casgem_Case1.Doviz.Kuru.Consume.csproj" />
-  </ItemGroup>
-
 </Project>

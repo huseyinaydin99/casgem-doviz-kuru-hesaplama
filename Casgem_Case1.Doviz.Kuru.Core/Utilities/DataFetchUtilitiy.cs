@@ -51,5 +51,23 @@ namespace Casgem_Case1.Doviz.Kuru.Core.Utilities
             }
             return exchangeRates;//para kuru model nesnesi listesini döndük.
         }
+
+        public static async Task<Dictionary<string, List<(DateTime date, decimal? rate)>>> DovizKurEnYuksek()
+        {
+            var items = await GetMoneysRatesAsync();
+            // Döviz kurlarının  listesi
+            var currencyRates = new Dictionary<string, List<(DateTime date, decimal? rate)>>();
+            currencyRates.Add("USD", items.OrderByDescending(x => x.usd).Take(5)
+                                          .Select(x => (x.date, x.usd)).ToList());
+            currencyRates.Add("EUR", items.OrderByDescending(x => x.eur).Take(5)
+                                          .Select(x => (x.date, x.eur)).ToList());
+            currencyRates.Add("CHF", items.OrderByDescending(x => x.chf).Take(5)
+                                          .Select(x => (x.date, x.chf)).ToList());
+            currencyRates.Add("GBP", items.OrderByDescending(x => x.gbp).Take(5)
+                                          .Select(x => (x.date, x.gbp)).ToList());
+            currencyRates.Add("JPY", items.OrderByDescending(x => x.jpy).Take(5)
+                                          .Select(x => (x.date, x.jpy)).ToList());
+            return currencyRates;
+        }
     }
 }
