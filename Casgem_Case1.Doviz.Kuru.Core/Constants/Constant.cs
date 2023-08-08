@@ -8,6 +8,6 @@ namespace Casgem_Case1.Doviz.Kuru.Core.Constants
 {
     public static class Constant
     {
-        public static string API_URL { get; set; } = "https://localhost:44317/api/ExchangeRates";
+        public static string API_URL { get; set; } = "https://localhost:7026/api/MoneyRate";
     }
 }

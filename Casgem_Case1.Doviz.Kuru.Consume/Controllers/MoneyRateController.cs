@@ -1,6 +1,7 @@
 ﻿using Casgem_Case1.Doviz.Kuru.Consume.Models;
 using Casgem_Case1.Doviz.Kuru.Core.Utilities;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Xml.Linq;
@@ -9,19 +10,35 @@ namespace Casgem_Case1.Doviz.Kuru.Consume.Controllers
 {
     public class MoneyRateController : Controller
     {
-        public async Task<List<MoneyRateModel>> GetExchangeRatesAsync()
+        [HttpGet]
+        public async Task<IActionResult> GetMoneyRates()
         {
-            return await DataFetchUtilitiy.GetMoneysRatesAsync();
+            var items = await DataFetchUtilitiy.GetMoneysRatesAsync();
+            // Döviz kurlarının  listesi
+            var currencyRates = new Dictionary<string, List<(DateTime date, decimal? rate)>>();
+            currencyRates.Add("USD", items.OrderByDescending(x => x.usd).Take(5)
+                                          .Select(x => (x.date, x.usd)).ToList());
+            currencyRates.Add("EUR", items.OrderByDescending(x => x.eur).Take(5)
+                                          .Select(x => (x.date, x.eur)).ToList());
+            currencyRates.Add("CHF", items.OrderByDescending(x => x.chf).Take(5)
+                                          .Select(x => (x.date, x.chf)).ToList());
+            currencyRates.Add("GBP", items.OrderByDescending(x => x.gbp).Take(5)
+                                          .Select(x => (x.date, x.gbp)).ToList());
+            currencyRates.Add("JPY", items.OrderByDescending(x => x.jpy).Take(5)
+                                          .Select(x => (x.date, x.jpy)).ToList());
+            return View(currencyRates);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var exchangeRates = await GetExchangeRatesAsync();
+            var exchangeRates = await DataFetchUtilitiy.GetMoneysRatesAsync();
             var ex = exchangeRates.OrderByDescending(p => p.date).ToList();
             return View(ex);
         }
 
         //Para kurlarını Excel dosyasına yazma methotu.
+        [HttpPost]
         public async Task<IActionResult> WriteMoneyRateExcelFile()
         {
             // Döviz kur verileri
@@ -64,9 +81,10 @@ namespace Casgem_Case1.Doviz.Kuru.Consume.Controllers
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> MoneyRateShowingChart()
         {
-            var items = await GetExchangeRatesAsync();
+            var items = await DataFetchUtilitiy.GetMoneysRatesAsync();
             var usdRates = items.OrderByDescending(x => x.usd).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.usd }).ToList();
             var eurRates = items.OrderByDescending(x => x.eur).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.eur }).ToList();
             var chfRates = items.OrderByDescending(x => x.chf).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.chf }).ToList();
