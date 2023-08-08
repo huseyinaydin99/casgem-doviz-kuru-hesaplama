@@ -1,0 +1,39 @@
+﻿@model object
+@{
+    ViewData["Title"] = "DovizKurGrafik";
+}
+<!-- Google Charts kütüphanesini yükledim -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // Veriler çektim
+        var usdRates = JSON.parse('@Html.Raw(ViewData["UsdRates"])');
+        var eurRates = JSON.parse('@Html.Raw(ViewData["EurRates"])');
+        var chfRates = JSON.parse('@Html.Raw(ViewData["ChfRates"])');
+        var gbpRates = JSON.parse('@Html.Raw(ViewData["GbpRates"])');
+        var jpyRates = JSON.parse('@Html.Raw(ViewData["JpyRates"])');
+
+        // Grafiğe bind edilecek veriler
+        var data = google.visualization.arrayToDataTable([
+            ['Döviz Kuru', 'Değer'],
+            ['USD', usdRates[0].Rate],
+            ['EUR', eurRates[0].Rate],
+            ['CHF', chfRates[0].Rate],
+            ['GBP', gbpRates[0].Rate],
+            ['JPY', jpyRates[0].Rate],
+        ]);
+        var options = {
+            title: 'Döviz Kurları',
+            width: 800,
+            height: 800
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
+
+<div id="chart_div"></div>

@@ -1,0 +1,33 @@
+﻿@model Dictionary<string, List<(DateTime date, decimal? rate)>>
+@{
+    ViewData["Title"] = "DovizKurEnYuksek";
+}
+ <h4>En yüksek 5 güne ait kur verileri</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Günler</th>
+            @foreach (var currency in Model)
+            {
+                <th>@currency.Key</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i =0,c=1; i< Model.First().Value.Count; i++,c++)
+        {
+            <tr>
+                <td>@c .gün</td>
+                @foreach (var currency in Model)
+                {
+                
+                    <td>@currency.Value[i].rate</td>
+                  
+                }  
+            </tr>
+        }
+    </tbody>
+</table>
+<form method="post" action="@Url.Action("WriteMoneyRateExcelFile", "MoneyRate")">
+    <button type="submit" class="btn btn-primary">Excel Çıktısı Al</button>
+</form>

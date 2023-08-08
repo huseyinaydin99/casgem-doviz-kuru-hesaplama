@@ -2,6 +2,7 @@
 using Casgem_Case1.Doviz.Kuru.Core.Utilities;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Xml.Linq;
 
 namespace Casgem_Case1.Doviz.Kuru.Consume.Controllers
@@ -13,6 +14,14 @@ namespace Casgem_Case1.Doviz.Kuru.Consume.Controllers
             return await DataFetchUtilitiy.GetMoneysRatesAsync();
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var exchangeRates = await GetExchangeRatesAsync();
+            var ex = exchangeRates.OrderByDescending(p => p.date).ToList();
+            return View(ex);
+        }
+
+        //Para kurlarını Excel dosyasına yazma methotu.
         public async Task<IActionResult> WriteMoneyRateExcelFile()
         {
             // Döviz kur verileri
@@ -53,6 +62,27 @@ namespace Casgem_Case1.Doviz.Kuru.Consume.Controllers
                     return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Doviz Kuru Verileri.xlsx");
                 }
             }
+        }
+
+        public async Task<IActionResult> MoneyRateShowingChart()
+        {
+            var items = await GetExchangeRatesAsync();
+            var usdRates = items.OrderByDescending(x => x.usd).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.usd }).ToList();
+            var eurRates = items.OrderByDescending(x => x.eur).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.eur }).ToList();
+            var chfRates = items.OrderByDescending(x => x.chf).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.chf }).ToList();
+            var gbpRates = items.OrderByDescending(x => x.gbp).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.gbp }).ToList();
+            var jpyRates = items.OrderByDescending(x => x.jpy).Take(5).Select(x => new { Date = x.date.ToShortDateString(), Rate = x.jpy }).ToList();
+            var jsonUsdRates = JsonConvert.SerializeObject(usdRates);
+            var jsonEurRates = JsonConvert.SerializeObject(eurRates);
+            var jsonChfRates = JsonConvert.SerializeObject(chfRates);
+            var jsonGbpRates = JsonConvert.SerializeObject(gbpRates);
+            var jsonJpyRates = JsonConvert.SerializeObject(jpyRates);
+            ViewData["UsdRates"] = jsonUsdRates;
+            ViewData["EurRates"] = jsonEurRates;
+            ViewData["ChfRates"] = jsonChfRates;
+            ViewData["GbpRates"] = jsonGbpRates;
+            ViewData["JpyRates"] = jsonJpyRates;
+            return View();
         }
     }
 }

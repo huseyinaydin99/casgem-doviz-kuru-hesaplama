@@ -1,0 +1,32 @@
+﻿@model List<MoneyRateModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h3>Döviz Kurları</h3>
+<table class="table table-borderd">
+    <thead>
+        <tr>
+            <th>Tarih</th>
+            <th>USD</th>
+            <th>EUR</th>
+            <th>CHF</th>
+            <th>GBP</th>
+            <th>JPY</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Convert.ToDateTime(item.date).ToString("dd-MM-yyyy")</td>
+                <td>@item.usd</td>
+                <td>@item.eur</td>
+                <td>@item.chf</td>
+                <td>@item.gbp</td>
+                <td>@item.jpy</td>
+            </tr>
+        }
+    </tbody>
+</table>
