@@ -12,9 +12,9 @@ namespace Casgem_Case1.Doviz.Kuru.Controllers
         //Veriyi TCMB'nin Web Servisinden çekebilmemiz için kullanacağımız client yani istemci(sunucuya istek atıp cevaplar alan nesnedir).
         private readonly HttpClient _httpClient;
 
-        public MoneyRateController(HttpClient httpClient)
+        public MoneyRateController()
         {
-            _httpClient = httpClient;
+            _httpClient = new HttpClient();
         }
 
         [HttpGet]
