@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
 
 namespace Casgem_Case1.Doviz.Kuru.Core.Utilities
 {
@@ -52,7 +53,7 @@ namespace Casgem_Case1.Doviz.Kuru.Core.Utilities
             return exchangeRates;//para kuru model nesnesi listesini döndük.
         }
 
-        public static async Task<Dictionary<string, List<(DateTime date, decimal? rate)>>> DovizKurEnYuksek()
+        public static async Task<Dictionary<string, List<(DateTime date, decimal? rate)>>> GetMoneyRateMaximum()
         {
             var items = await GetMoneysRatesAsync();
             // Döviz kurlarının  listesi
@@ -69,5 +70,6 @@ namespace Casgem_Case1.Doviz.Kuru.Core.Utilities
                                           .Select(x => (x.date, x.jpy)).ToList());
             return currencyRates;
         }
+
     }
 }
